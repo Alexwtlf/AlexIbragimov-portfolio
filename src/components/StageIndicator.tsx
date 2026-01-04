@@ -8,11 +8,19 @@ interface StageIndicatorProps {
 export function StageIndicator({ currentStage }: StageIndicatorProps) {
   const currentIndex = STAGES.indexOf(currentStage);
 
+  const progressPercentage = (currentIndex / (STAGES.length - 1)) * 100;
+
   return (
     <div className="w-full">
       <div className="relative flex items-center justify-between mb-2">
-        {/* Track line */}
+        {/* Base track line */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-0.5 bg-stage-track" />
+        
+        {/* Filled progress line */}
+        <div 
+          className="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-stage-active transition-all duration-300"
+          style={{ width: `${progressPercentage}%` }}
+        />
         
         {/* Stage dots */}
         {STAGES.map((stage, index) => (
