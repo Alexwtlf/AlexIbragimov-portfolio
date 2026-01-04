@@ -1,4 +1,3 @@
-import { ThemeProvider } from "next-themes";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
@@ -6,22 +5,22 @@ import { WhatIDo } from "@/components/WhatIDo";
 import { YCTracker } from "@/components/YCTracker";
 import { LetsConnect } from "@/components/LetsConnect";
 import { Footer } from "@/components/Footer";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 
 const Index = () => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main>
-          <Hero />
-          <Projects />
-          <WhatIDo />
-          <YCTracker />
-          <LetsConnect />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className="min-h-screen bg-background relative">
+      <AnimatedBackground />
+      <Header />
+      <main className="relative z-10">
+        <Hero />
+        <Projects />
+        <WhatIDo />
+        <YCTracker />
+        <LetsConnect />
+      </main>
+      <Footer />
+    </div>
   );
 };
 
