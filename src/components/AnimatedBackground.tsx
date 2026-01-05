@@ -11,8 +11,9 @@ interface Particle {
 }
 
 const COLORS = [
-  "140, 30%, 25%", // muted green
-  "270, 30%, 30%", // muted purple
+  "140, 40%, 55%", // soft green
+  "270, 45%, 60%", // soft purple
+  "200, 50%, 55%", // soft blue
 ];
 
 export function AnimatedBackground() {
@@ -40,11 +41,11 @@ export function AnimatedBackground() {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          size: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          size: Math.random() * 3 + 2,
           color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          alpha: Math.random() * 0.3 + 0.1,
+          alpha: Math.random() * 0.4 + 0.3,
         });
       }
 
@@ -72,18 +73,20 @@ export function AnimatedBackground() {
       animationRef.current = requestAnimationFrame(animate);
     };
 
+    const handleResize = () => {
+      resizeCanvas();
+      createParticles();
+    };
+
     resizeCanvas();
     createParticles();
     animate();
 
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-      createParticles();
-    });
+    window.addEventListener("resize", handleResize);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
