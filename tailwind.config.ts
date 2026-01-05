@@ -56,8 +56,6 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         stage: {
-          inactive: "hsl(var(--stage-inactive))",
-          active: "hsl(var(--stage-active))",
           track: "hsl(var(--stage-track))",
         },
       },

@@ -41,9 +41,7 @@
 
     --radius: 0.5rem;
 
-    /* Stage indicator */
-    --stage-inactive: 0 0% 30%;
-    --stage-active: 0 0% 90%;
+    /* Stage indicator track */
     --stage-track: 0 0% 20%;
   }
 }
