@@ -32,7 +32,7 @@ export function Hero() {
   }, [displayText, isDeleting]);
 
   return (
-    <section className="section-padding pt-32 md:pt-40">
+    <section className="px-6 md:px-8 pt-36 sm:pt-40 md:pt-48 pb-16 md:pb-24 lg:pb-32">
       <div className="container-narrow">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
           Alex Ibragimov
