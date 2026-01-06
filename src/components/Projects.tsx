@@ -7,7 +7,8 @@ interface Project {
   name: string;
   description: string;
   stage: Stage;
-  icon: string;
+  icon?: string;
+  logoUrl?: string; // Image logo (takes priority over emoji icon)
   waitlistUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
@@ -25,27 +26,27 @@ const PROJECTS: Project[] = [
     name: "Co-Founder Finder",
     description: "Find your co-founder in seconds.",
     stage: "Live",
-    icon: "⚡",
+    logoUrl: "/logos/cofounder-finder.png",
     // demoUrl not used - opens interactive modal instead
   },
   {
     name: "Quenser",
     description: "Social Prediction Market.",
     stage: "MVP",
-    icon: "📬",
+    logoUrl: "/logos/quenser.png",
     demoUrl: "https://quenser.com/"
   },
   {
     name: "Freedom Countdown",
     description: "A countdown to the future you promised yourself.",
     stage: "Exploration",
-    icon: "⏳",
+    logoUrl: "/logos/Freedom-Countdown.png",
   },
   {
     name: "Q Vibe Studio",
     description: "A venture studio for solo founders in the era of vibe coding.",
     stage: "Building",
-    icon: "🧪",
+    logoUrl: "/logos/vibe-studio.png",
   },
 ];
 

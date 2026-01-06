@@ -7,6 +7,7 @@ interface ProjectCardProps {
   description: string;
   stage: Stage;
   icon?: string;
+  logoUrl?: string; // Image logo (takes priority over emoji icon)
   waitlistUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
@@ -18,6 +19,7 @@ export function ProjectCard({
   description,
   stage,
   icon = "🧪",
+  logoUrl,
   waitlistUrl,
   demoUrl,
   githubUrl,
@@ -48,7 +50,16 @@ export function ProjectCard({
   return (
     <div className="p-6 rounded-lg border border-border bg-card">
       <div className="flex items-start gap-4 mb-4">
-        <span className="text-2xl">{icon}</span>
+        {/* Logo or emoji icon */}
+        {logoUrl ? (
+          <img
+            src={logoUrl}
+            alt={`${name} logo`}
+            className="w-8 h-8 rounded-md object-contain"
+          />
+        ) : (
+          <span className="text-2xl">{icon}</span>
+        )}
         <div className="flex-1 min-w-0">
           <h3 className="text-lg font-semibold text-card-foreground mb-1">
             {name}
