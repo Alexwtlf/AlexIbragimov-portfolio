@@ -7,22 +7,28 @@ interface StageIndicatorProps {
 
 // =============================================================================
 // STAGE INDICATOR COLORS
-// Gradient: muted teal → bright cyan (#08fdd8)
+// Gradient: muted teal → accent-cyan (--accent-cyan / #08fdd8)
+// Note: Gradient is computed dynamically, endpoint matches CSS variable
 // =============================================================================
 
 const INACTIVE_DOT_COLOR = "hsl(0, 0%, 30%)";
 const INACTIVE_TEXT_COLOR = "hsl(0, 0%, 55%)";
 
+// Accent cyan HSL values (must match --accent-cyan in index.css)
+const ACCENT_CYAN_H = 170;
+const ACCENT_CYAN_S = 98;
+const ACCENT_CYAN_L = 51;
+
 /**
  * Calculate stage color based on position in gradient
  * Start: hsl(170, 30%, 25%) - muted teal
- * End:   hsl(170, 98%, 51%) - bright cyan (#08fdd8)
+ * End:   hsl(170, 98%, 51%) - accent-cyan (#08fdd8)
  */
 const getStageColor = (index: number, total: number) => {
   const progress = index / (total - 1);
-  const saturation = 30 + progress * 68;
-  const lightness = 25 + progress * 26;
-  return `hsl(170, ${saturation}%, ${lightness}%)`;
+  const saturation = 30 + progress * (ACCENT_CYAN_S - 30);
+  const lightness = 25 + progress * (ACCENT_CYAN_L - 25);
+  return `hsl(${ACCENT_CYAN_H}, ${saturation}%, ${lightness}%)`;
 };
 
 export function StageIndicator({ currentStage }: StageIndicatorProps) {

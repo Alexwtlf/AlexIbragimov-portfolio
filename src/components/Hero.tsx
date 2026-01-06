@@ -38,7 +38,7 @@ export function Hero() {
           Alex Ibragimov
         </h1>
         <p className="text-xl md:text-2xl font-medium text-foreground mb-2">
-          Founder building <span style={{ color: "#08fdd8" }}>MVPs</span> in public.
+          Founder building <span className="text-accent-cyan">MVPs</span> in public.
         </p>
         <p className="text-base text-muted-foreground max-w-lg mb-4">
           Fast iteration. Strong distribution.

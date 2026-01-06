@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { ProjectCard } from "./ProjectCard";
 import { Stage } from "./StageIndicator";
+import { CoFounderFinderModal } from "./CoFounderFinderModal";
 
 interface Project {
   name: string;
@@ -11,16 +13,20 @@ interface Project {
   githubUrl?: string;
 }
 
+// =============================================================================
+// PROJECTS DATA
 // Configure your projects here
 // For waitlist forms, add your Typeform/Tally/Google Form URL
 // The project name will be automatically appended as ?project=ProjectName
+// =============================================================================
+
 const PROJECTS: Project[] = [
   {
-    name: "Project Alpha",
-    description: "AI-powered tool for founders to validate ideas faster.",
-    stage: "Building",
+    name: "Co-Founder Finder",
+    description: "Find your co-founder in seconds.",
+    stage: "Live",
     icon: "⚡",
-    waitlistUrl: "https://tally.so/r/your-form-id", // Replace with your form URL
+    // demoUrl not used - opens interactive modal instead
   },
   {
     name: "Project Beta",
@@ -39,7 +45,13 @@ const PROJECTS: Project[] = [
   },
 ];
 
+// =============================================================================
+// COMPONENT
+// =============================================================================
+
 export function Projects() {
+  const [coFounderModalOpen, setCoFounderModalOpen] = useState(false);
+
   return (
     <section id="projects" className="section-padding">
       <div className="container-wide">
@@ -48,10 +60,25 @@ export function Projects() {
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project) => (
-            <ProjectCard key={project.name} {...project} />
+            <ProjectCard
+              key={project.name}
+              {...project}
+              // Special case: Co-Founder Finder opens modal instead of demoUrl
+              onDemoClick={
+                project.name === "Co-Founder Finder"
+                  ? () => setCoFounderModalOpen(true)
+                  : undefined
+              }
+            />
           ))}
         </div>
       </div>
+
+      {/* Co-Founder Finder Interactive Modal */}
+      <CoFounderFinderModal
+        open={coFounderModalOpen}
+        onOpenChange={setCoFounderModalOpen}
+      />
     </section>
   );
 }

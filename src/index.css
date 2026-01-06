@@ -43,6 +43,9 @@
 
     /* Stage indicator track */
     --stage-track: 0 0% 20%;
+
+    /* Accent cyan (#08fdd8) - used for highlights, stage indicator, CTAs */
+    --accent-cyan: 170 98% 51%;
   }
 }
 

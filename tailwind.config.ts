@@ -58,6 +58,9 @@ export default {
         stage: {
           track: "hsl(var(--stage-track))",
         },
+        "accent-cyan": {
+          DEFAULT: "hsl(var(--accent-cyan))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

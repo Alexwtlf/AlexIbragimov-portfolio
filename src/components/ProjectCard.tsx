@@ -10,6 +10,7 @@ interface ProjectCardProps {
   waitlistUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
+  onDemoClick?: () => void; // Custom handler for demo button
 }
 
 export function ProjectCard({
@@ -20,6 +21,7 @@ export function ProjectCard({
   waitlistUrl,
   demoUrl,
   githubUrl,
+  onDemoClick,
 }: ProjectCardProps) {
   const isLive = stage === "Live";
 
@@ -29,6 +31,15 @@ export function ProjectCard({
       const url = new URL(waitlistUrl);
       url.searchParams.set("project", name);
       window.open(url.toString(), "_blank");
+    }
+  };
+
+  const handleDemoClick = () => {
+    // Use custom handler if provided, otherwise open demoUrl
+    if (onDemoClick) {
+      onDemoClick();
+    } else if (demoUrl) {
+      window.open(demoUrl, "_blank");
     }
   };
 
@@ -51,11 +62,11 @@ export function ProjectCard({
       <div className="flex items-center gap-3">
         {isLive ? (
           <>
-            {demoUrl && (
+            {(demoUrl || onDemoClick) && (
               <Button
                 variant="default"
                 size="sm"
-                onClick={() => window.open(demoUrl, "_blank")}
+                onClick={handleDemoClick}
                 className="gap-2"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
