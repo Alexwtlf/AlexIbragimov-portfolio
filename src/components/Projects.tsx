@@ -29,19 +29,23 @@ const PROJECTS: Project[] = [
     // demoUrl not used - opens interactive modal instead
   },
   {
-    name: "Project Beta",
-    description: "Distribution-first newsletter platform for builders.",
-    stage: "Exploration",
+    name: "Quenser",
+    description: "Social Prediction Market.",
+    stage: "MVP",
     icon: "📬",
-    waitlistUrl: "https://tally.so/r/your-form-id", // Replace with your form URL
+    demoUrl: "https://quenser.com/"
   },
   {
-    name: "ShipFast Kit",
-    description: "Open-source boilerplate for launching MVPs in days.",
-    stage: "Live",
-    icon: "🚀",
-    demoUrl: "https://example.com",
-    githubUrl: "https://github.com/example/shipfast",
+    name: "Freedom Countdown",
+    description: "A countdown to the future you promised yourself.",
+    stage: "Exploration",
+    icon: "⏳",
+  },
+  {
+    name: "Q Vibe Studio",
+    description: "A venture studio for solo founders in the era of vibe coding.",
+    stage: "Building",
+    icon: "🧪",
   },
 ];
 

@@ -24,6 +24,8 @@ export function ProjectCard({
   onDemoClick,
 }: ProjectCardProps) {
   const isLive = stage === "Live";
+  const isMVP = stage === "MVP";
+  const showDemoButton = (isLive || isMVP) && (demoUrl || onDemoClick);
 
   const handleWaitlistClick = () => {
     if (waitlistUrl) {
@@ -51,7 +53,7 @@ export function ProjectCard({
           <h3 className="text-lg font-semibold text-card-foreground mb-1">
             {name}
           </h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <p className="text-sm text-muted-foreground min-h-[2.5rem]">{description}</p>
         </div>
       </div>
 
@@ -60,32 +62,34 @@ export function ProjectCard({
       </div>
 
       <div className="flex items-center gap-3">
-        {isLive ? (
-          <>
-            {(demoUrl || onDemoClick) && (
-              <Button
-                variant="default"
-                size="sm"
-                onClick={handleDemoClick}
-                className="gap-2"
-              >
-                <ExternalLink className="h-3.5 w-3.5" />
-                View demo
-              </Button>
-            )}
-            {githubUrl && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => window.open(githubUrl, "_blank")}
-                className="gap-2"
-              >
-                <Github className="h-3.5 w-3.5" />
-                GitHub
-              </Button>
-            )}
-          </>
-        ) : (
+        {/* View demo button - shown for Live and MVP stages */}
+        {showDemoButton && (
+          <Button
+            variant="default"
+            size="sm"
+            onClick={handleDemoClick}
+            className="gap-2"
+          >
+            <ExternalLink className="h-3.5 w-3.5" />
+            View demo
+          </Button>
+        )}
+
+        {/* GitHub button - shown for Live stage */}
+        {isLive && githubUrl && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => window.open(githubUrl, "_blank")}
+            className="gap-2"
+          >
+            <Github className="h-3.5 w-3.5" />
+            GitHub
+          </Button>
+        )}
+
+        {/* Waitlist button - shown for early stages (Idea, Exploration, Building) */}
+        {!isLive && !isMVP && (
           <Button
             variant="default"
             size="sm"
