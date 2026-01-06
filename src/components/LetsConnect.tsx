@@ -41,7 +41,7 @@ export function LetsConnect() {
         </h2>
         
         <p className="text-base text-muted-foreground mb-8 max-w-lg">
-          Open to a strong technical co-founder and early collaborators.
+          Open to a technical co-founder and early collaborators.
           If you build fast and care about distribution — let's talk.
         </p>
         

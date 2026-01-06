@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-const TYPING_TEXT = "NYC · Open to strong technical co-founder";
+const TYPING_TEXT = "NYC · Open to a tech co-founder who ships fast";
 const MVP_TEXT = "MVPs";
 
 export function Hero() {
