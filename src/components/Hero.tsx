@@ -33,8 +33,11 @@ export function Hero() {
     setTimeout(typeNextChar, 500);
   }, []);
 
-  // NYC typing animation (loops)
+  // NYC typing animation (loops) - starts after MVPs is done
   useEffect(() => {
+    // Wait for MVPs to finish first
+    if (!mvpDone) return;
+
     const typeSpeed = isDeleting ? 30 : 80;
     const pauseTime = isDeleting ? 500 : 2000;
 
@@ -57,7 +60,7 @@ export function Hero() {
     }, typeSpeed);
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting]);
+  }, [displayText, isDeleting, mvpDone]);
 
   return (
     <section className="px-6 md:px-8 pt-36 sm:pt-40 md:pt-48 pb-16 md:pb-24 lg:pb-32">
