@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 // =============================================================================
 // ANIMATED COUNTER - spins like a speedometer
@@ -16,27 +16,7 @@ function AnimatedCounter({ target, duration = 3000, label }: AnimatedCounterProp
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          setIsAnimating(true);
-          startAnimation();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasAnimated]);
-
-  const startAnimation = () => {
+  const startAnimation = useCallback(() => {
     const startTime = Date.now();
     const maxValue = target + 20; // Overshoot for slot machine effect
 
@@ -65,7 +45,27 @@ function AnimatedCounter({ target, duration = 3000, label }: AnimatedCounterProp
     };
 
     requestAnimationFrame(animate);
-  };
+  }, [target, duration]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          setIsAnimating(true);
+          startAnimation();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated, startAnimation]);
 
   return (
     <div ref={ref}>
