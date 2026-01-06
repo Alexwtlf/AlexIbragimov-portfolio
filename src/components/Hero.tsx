@@ -1,11 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const TYPING_TEXT = "NYC · Open to strong technical co-founder";
+const MVP_TEXT = "MVPs";
 
 export function Hero() {
+  // NYC typing animation (loops)
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // MVPs typing animation (once on load)
+  const [mvpText, setMvpText] = useState("");
+  const [mvpDone, setMvpDone] = useState(false);
+  const mvpStarted = useRef(false);
+
+  // MVPs typing - runs once on mount
+  useEffect(() => {
+    if (mvpStarted.current) return;
+    mvpStarted.current = true;
+
+    let charIndex = 0;
+    const typeNextChar = () => {
+      if (charIndex <= MVP_TEXT.length) {
+        setMvpText(MVP_TEXT.slice(0, charIndex));
+        charIndex++;
+        setTimeout(typeNextChar, 100); // Typing speed for MVPs
+      } else {
+        setMvpDone(true);
+      }
+    };
+
+    // Small delay before starting
+    setTimeout(typeNextChar, 500);
+  }, []);
+
+  // NYC typing animation (loops)
   useEffect(() => {
     const typeSpeed = isDeleting ? 30 : 80;
     const pauseTime = isDeleting ? 500 : 2000;
@@ -38,7 +66,12 @@ export function Hero() {
           Alex Ibragimov
         </h1>
         <p className="text-xl md:text-2xl font-medium text-foreground mb-2">
-          Founder building <span className="text-accent-cyan">MVPs</span> in public.
+          Founder building{" "}
+          <span className="text-accent-cyan">
+            {mvpText}
+            {!mvpDone && <span className="animate-pulse">|</span>}
+          </span>
+          {" "}in public.
         </p>
         <p className="text-base text-muted-foreground max-w-lg mb-4">
           Fast iteration. Strong distribution.

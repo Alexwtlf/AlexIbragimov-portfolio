@@ -1,23 +1,75 @@
 import { useEffect, useRef, useState } from "react";
 
-const SKILLS = [
-  { title: "Product & MVPs", description: "idea → shipped" },
-  { title: "Product Design", description: "UX-first, fast iteration" },
-  { title: "Frontend", description: "React / Next.js" },
-  { title: "Prototyping & Experiments", description: "validate before scale" },
-  { title: "Early-stage Execution", description: "weekly shipping" },
-  { title: "Social Distribution", description: "30M+ organic views" },
+// =============================================================================
+// SKILLS DATA
+// Each skill has parts: some plain text, some accented
+// =============================================================================
+
+interface SkillPart {
+  text: string;
+  accent?: boolean;
+}
+
+interface Skill {
+  parts: SkillPart[];
+}
+
+const SKILLS: Skill[] = [
+  {
+    parts: [
+      { text: "Product " },
+      { text: " & MVPs", accent: true },
+      { text: " — from zero to launch" },
+    ],
+  },
+  {
+    parts: [
+      { text: "Product Design — " },
+      { text: "UX-first", accent: true },
+      { text: ", fast iteration" },
+    ],
+  },
+  {
+    parts: [
+      { text: "Frontend — " },
+      { text: "React / Next.js", accent: true },
+    ],
+  },
+  {
+    parts: [
+      { text: "Early-stage execution — " },
+      { text: "weekly shipping", accent: true },
+    ],
+  },
+  {
+    parts: [
+      { text: "Social distribution — " },
+      { text: "30M+", accent: true },
+      { text: " organic views" },
+    ],
+  },
 ];
 
+// =============================================================================
+// COMPONENT
+// =============================================================================
+
 export function WhatIDo() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [visibleLines, setVisibleLines] = useState<number>(0);
+  const [typedChars, setTypedChars] = useState<number[]>(SKILLS.map(() => 0));
   const sectionRef = useRef<HTMLElement>(null);
+  const hasAnimated = useRef(false);
+
+  // Get full text length for a skill
+  const getFullText = (skill: Skill) =>
+    skill.parts.map((p) => p.text).join("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          startTypingAnimation();
           observer.disconnect();
         }
       },
@@ -31,29 +83,87 @@ export function WhatIDo() {
     return () => observer.disconnect();
   }, []);
 
+  const startTypingAnimation = () => {
+    let currentLine = 0;
+    let currentChar = 0;
+
+    const typeNextChar = () => {
+      if (currentLine >= SKILLS.length) return;
+
+      const fullText = getFullText(SKILLS[currentLine]);
+
+      if (currentChar <= fullText.length) {
+        setTypedChars((prev) => {
+          const newChars = [...prev];
+          newChars[currentLine] = currentChar;
+          return newChars;
+        });
+        setVisibleLines(currentLine + 1);
+        currentChar++;
+        setTimeout(typeNextChar, 25); // Fast typing speed
+      } else {
+        // Move to next line
+        currentLine++;
+        currentChar = 0;
+        setTimeout(typeNextChar, 150); // Pause between lines
+      }
+    };
+
+    typeNextChar();
+  };
+
+  // Render skill text with proper accents based on typed chars
+  const renderSkillText = (skill: Skill, charCount: number) => {
+    let totalChars = 0;
+    const elements: JSX.Element[] = [];
+
+    skill.parts.forEach((part, partIndex) => {
+      const partStart = totalChars;
+      const partEnd = totalChars + part.text.length;
+      totalChars = partEnd;
+
+      // How much of this part should be visible
+      const visibleLength = Math.max(0, Math.min(charCount - partStart, part.text.length));
+      const visibleText = part.text.slice(0, visibleLength);
+
+      if (visibleText) {
+        elements.push(
+          <span
+            key={partIndex}
+            className={part.accent ? "text-accent-cyan" : "text-foreground"}
+          >
+            {visibleText}
+          </span>
+        );
+      }
+    });
+
+    return elements;
+  };
+
   return (
     <section id="what-i-do" ref={sectionRef} className="section-padding bg-secondary/30">
       <div className="container-narrow">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
           What I do
         </h2>
-        <ul className="space-y-4">
+        <ul className="space-y-3">
           {SKILLS.map((skill, index) => (
             <li
-              key={skill.title}
-              className={`flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 ${
-                isVisible ? "opacity-0 animate-fade-in-up" : "opacity-0"
+              key={index}
+              className={`font-medium transition-opacity duration-200 ${
+                index < visibleLines ? "opacity-100" : "opacity-0"
               }`}
-              style={isVisible ? { animationDelay: `${index * 0.1}s` } : {}}
             >
-              <span className="font-medium text-foreground">{skill.title}</span>
-              <span className="text-muted-foreground">{skill.description}</span>
+              {renderSkillText(skill, typedChars[index])}
+              {/* Typing cursor on current line */}
+              {index === visibleLines - 1 &&
+                typedChars[index] < getFullText(skill).length && (
+                  <span className="text-accent-cyan animate-pulse">|</span>
+                )}
             </li>
           ))}
         </ul>
-        <p className="text-sm text-muted-foreground mt-8">
-          Focused on early-stage products and fast iteration.
-        </p>
       </div>
     </section>
   );
