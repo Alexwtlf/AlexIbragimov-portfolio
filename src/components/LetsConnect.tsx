@@ -17,22 +17,17 @@ function XIcon({ className }: { className?: string }) {
 const SOCIAL_LINKS = [
   {
     name: "Email",
-    href: "mailto:alex@example.com", // Replace with your email
+    href: "mailto:ibragimov.alejandro@gmail.com", // Replace with your email
     icon: Mail,
   },
   {
     name: "X",
-    href: "https://x.com/alexibragimov", // Replace with your handle
+    href: "https://x.com/alexwtlf", // Replace with your handle
     icon: XIcon,
   },
   {
-    name: "GitHub",
-    href: "https://github.com/alexibragimov", // Replace with your username
-    icon: Github,
-  },
-  {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/alexibragimov", // Replace with your profile
+    href: "https://www.linkedin.com/in/alexibragimov/", // Replace with your profile
     icon: Linkedin,
   },
 ];
