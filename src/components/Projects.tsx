@@ -24,7 +24,7 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     name: "VcodingList",
-    description: "Launching media platform for AI native builders.",
+    description: "Launch platform for AI-native builders.",
     stage: "MVP",
     logoUrl: "/logos/vcodinglist-logo.svg",
     demoUrl: "https://www.vcodinglist.com/",
