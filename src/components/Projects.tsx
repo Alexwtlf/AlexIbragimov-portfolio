@@ -23,9 +23,16 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
+    name: "Athana.ai",
+    description: "AI CMO and an army of AI influencers.",
+    stage: "MVP",
+    logoUrl: "/logos/athana.png",
+    demoUrl: "https://www.athana.ai/",
+  },
+  {
     name: "VcodingList",
     description: "Launch platform for AI-native builders.",
-    stage: "MVP",
+    stage: "Live",
     logoUrl: "/logos/vcodinglist-logo.svg",
     demoUrl: "https://www.vcodinglist.com/",
   },
@@ -42,12 +49,6 @@ const PROJECTS: Project[] = [
     stage: "MVP",
     logoUrl: "/logos/quenser.png",
     demoUrl: "https://quenser.com/"
-  },
-  {
-    name: "Freedom Countdown",
-    description: "A countdown to the future you promised yourself.",
-    stage: "Exploration",
-    logoUrl: "/logos/Freedom-Countdown.png",
   },
   {
     name: "Q Vibe Studio",
