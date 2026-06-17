@@ -1,29 +1,29 @@
 import { useEffect, useState, useRef } from "react";
 
 const TYPING_TEXT = "NYC · Open to a tech co-founder who ships fast";
-const MVP_TEXT = "MVPs";
+const STARTUPS_TEXT = "Startups";
 
 export function Hero() {
   // NYC typing animation (loops)
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // MVPs typing animation (once on load)
+  // Startups typing animation (once on load)
   const [mvpText, setMvpText] = useState("");
   const [mvpDone, setMvpDone] = useState(false);
   const mvpStarted = useRef(false);
 
-  // MVPs typing - runs once on mount
+  // Startups typing - runs once on mount
   useEffect(() => {
     if (mvpStarted.current) return;
     mvpStarted.current = true;
 
     let charIndex = 0;
     const typeNextChar = () => {
-      if (charIndex <= MVP_TEXT.length) {
-        setMvpText(MVP_TEXT.slice(0, charIndex));
+      if (charIndex <= STARTUPS_TEXT.length) {
+        setMvpText(STARTUPS_TEXT.slice(0, charIndex));
         charIndex++;
-        setTimeout(typeNextChar, 100); // Typing speed for MVPs
+        setTimeout(typeNextChar, 100);
       } else {
         setMvpDone(true);
       }
@@ -33,9 +33,9 @@ export function Hero() {
     setTimeout(typeNextChar, 500);
   }, []);
 
-  // NYC typing animation (loops) - starts after MVPs is done
+  // NYC typing animation (loops) - starts after startups text is done
   useEffect(() => {
-    // Wait for MVPs to finish first
+    // Wait for startups text to finish first
     if (!mvpDone) return;
 
     const typeSpeed = isDeleting ? 30 : 80;
