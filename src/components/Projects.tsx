@@ -30,6 +30,13 @@ const PROJECTS: Project[] = [
     demoUrl: "https://www.athana.ai/",
   },
   {
+    name: "Agentic Product Demo",
+    description: "Product demo videos from code, not a screen recorder.",
+    stage: "Live",
+    icon: "🎬",
+    githubUrl: "https://github.com/Alexwtlf/agentic-product-demo",
+  },
+  {
     name: "VcodingList",
     description: "Launch platform for AI-native builders.",
     stage: "Live",
