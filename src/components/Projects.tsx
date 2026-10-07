@@ -24,8 +24,8 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     name: "Athana.ai",
-    description: "AI CMO and an army of AI influencers.",
-    stage: "MVP",
+    description: "The agentic AI video studio.",
+    stage: "Live",
     logoUrl: "/logos/athana.png",
     demoUrl: "https://www.athana.ai/",
   },
@@ -46,7 +46,7 @@ const PROJECTS: Project[] = [
   {
     name: "Quenser",
     description: "Social Prediction Market.",
-    stage: "MVP",
+    stage: "Live",
     logoUrl: "/logos/quenser.png",
     demoUrl: "https://quenser.com/"
   },
