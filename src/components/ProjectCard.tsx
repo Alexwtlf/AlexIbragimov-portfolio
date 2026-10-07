@@ -48,27 +48,33 @@ export function ProjectCard({
   };
 
   return (
-    <div className="p-6 rounded-lg border border-border bg-card">
-      <div className="flex items-start gap-4 mb-4">
-        {/* Logo or emoji icon */}
-        {logoUrl ? (
-          <img
-            src={logoUrl}
-            alt={`${name} logo`}
-            className="w-8 h-8 rounded-md object-contain"
-          />
-        ) : (
-          <span className="text-2xl">{icon}</span>
-        )}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-semibold text-card-foreground mb-1">
-            {name}
-          </h3>
-          <p className="text-sm text-muted-foreground min-h-[2.5rem]">{description}</p>
-        </div>
-      </div>
+    <div className="flex h-full flex-col p-6 rounded-lg border border-border bg-card">
+      {/* Logo or emoji icon — same 32px box either way */}
+      {logoUrl ? (
+        <img
+          src={logoUrl}
+          alt={`${name} logo`}
+          className="w-8 h-8 rounded-md object-contain mb-4"
+        />
+      ) : (
+        <span className="flex w-8 h-8 items-center justify-center rounded-md bg-muted text-lg leading-none mb-4">
+          {icon}
+        </span>
+      )}
 
-      <div className="mb-6">
+      {/* One line for the name, the description takes what it needs below */}
+      <h3
+        className="text-lg font-semibold text-card-foreground mb-1 truncate"
+        title={name}
+      >
+        {name}
+      </h3>
+      <p className="text-sm leading-5 text-muted-foreground min-h-[2.5rem] mb-5">
+        {description}
+      </p>
+
+      {/* Stage + buttons sit on the card's floor, so they line up across a row */}
+      <div className="mt-auto mb-6">
         <StageIndicator currentStage={stage} />
       </div>
 

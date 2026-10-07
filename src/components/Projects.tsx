@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
     name: "Agentic Product Demo",
     description: "Product demo videos from code, not a screen recorder.",
     stage: "Live",
-    icon: "🎬",
+    logoUrl: "/logos/agentic-demo.svg",
     githubUrl: "https://github.com/Alexwtlf/agentic-product-demo",
   },
   {
@@ -78,7 +78,7 @@ export function Projects() {
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
           Projects
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project) => (
             <ProjectCard
               key={project.name}
