@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
     name: "Agentic Product Demo",
     description: "Product demo videos from code, not a screen recorder.",
     stage: "Live",
-    logoUrl: "/logos/agentic-demo.svg",
+    logoUrl: "/logos/agentic-demo.png",
     githubUrl: "https://github.com/Alexwtlf/agentic-product-demo",
   },
   {
