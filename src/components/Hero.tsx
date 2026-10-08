@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-const TYPING_TEXT = "NYC · Open to a tech co-founder who ships fast";
+const TYPING_TEXT = "NYC · Founder of Athana · Building the future of AI filmmaking";
 const STARTUPS_TEXT = "Startups";
 
 export function Hero() {
