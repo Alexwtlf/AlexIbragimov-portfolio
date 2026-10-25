@@ -17,7 +17,7 @@ function XIcon({ className }: { className?: string }) {
 const SOCIAL_LINKS = [
   {
     name: "Email",
-    href: "mailto:ibragimov.alejandro@gmail.com",
+    href: "mailto:alex@athana.ai",
     icon: Mail,
   },
   {
