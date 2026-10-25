@@ -2,27 +2,27 @@ import { useEffect, useState, useRef } from "react";
 import { SocialLinks } from "./SocialLinks";
 
 const TYPING_TEXT = "NYC · Founder of Athana · Building the future of AI filmmaking";
-const STARTUPS_TEXT = "Startups";
+const ACCENT_TEXT = "new kind";
 
 export function Hero() {
   // NYC typing animation (loops)
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Startups typing animation (once on load)
+  // Accent typing animation (once on load)
   const [mvpText, setMvpText] = useState("");
   const [mvpDone, setMvpDone] = useState(false);
   const mvpStarted = useRef(false);
 
-  // Startups typing - runs once on mount
+  // Accent typing - runs once on mount
   useEffect(() => {
     if (mvpStarted.current) return;
     mvpStarted.current = true;
 
     let charIndex = 0;
     const typeNextChar = () => {
-      if (charIndex <= STARTUPS_TEXT.length) {
-        setMvpText(STARTUPS_TEXT.slice(0, charIndex));
+      if (charIndex <= ACCENT_TEXT.length) {
+        setMvpText(ACCENT_TEXT.slice(0, charIndex));
         charIndex++;
         setTimeout(typeNextChar, 100);
       } else {
@@ -34,9 +34,9 @@ export function Hero() {
     setTimeout(typeNextChar, 500);
   }, []);
 
-  // NYC typing animation (loops) - starts after startups text is done
+  // NYC typing animation (loops) - starts after accent text is done
   useEffect(() => {
-    // Wait for startups text to finish first
+    // Wait for accent text to finish first
     if (!mvpDone) return;
 
     const typeSpeed = isDeleting ? 30 : 80;
@@ -70,15 +70,15 @@ export function Hero() {
           Alex Ibragimov
         </h1>
         <p className="text-xl md:text-2xl font-medium text-foreground mb-2">
-          Founder building{" "}
+          A{" "}
           <span className="text-accent-cyan">
             {mvpText}
             {!mvpDone && <span className="animate-pulse">|</span>}
           </span>
-          {" "}in public.
+          {" "}of founder.
         </p>
         <p className="text-base text-muted-foreground max-w-lg mb-4">
-          Fast iteration. Strong distribution.
+          One person with AI agents does the work of a startup team.
         </p>
         <p className="text-sm text-muted-foreground h-10 sm:h-5">
           {displayText}

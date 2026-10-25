@@ -6,12 +6,10 @@ import { useEffect, useRef, useState } from "react";
 // =============================================================================
 
 const SKILLS = [
-  { before: "", accent: "Product & MVPs", after: " — from zero to launch" },
-  { before: "Product Design — ", accent: "UX-first", after: ", fast iteration" },
-  { before: "Frontend — ", accent: "React / Next.js", after: "" },
-  { before: "Early-stage execution — ", accent: "weekly shipping", after: "" },
-  { before: "Social distribution — ", accent: "30M+", after: " organic views" },
+  { before: "Product: ", accent: "zero to launch, design-led", after: "" },
+  { before: "Engineering: ", accent: "full stack, AI pipelines", after: "" },
   { before: "GTM / Growth: ", accent: "launches, lead gen, outreach, partnerships", after: "" },
+  { before: "Distribution: ", accent: "50M+ organic views", after: "" },
 ];
 
 const HEADING_TEXT = "What I do";
