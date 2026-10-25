@@ -4,8 +4,7 @@ import { Menu, X } from "lucide-react";
 const NAV_ITEMS = [
   { label: "Projects", href: "#projects" },
   { label: "What I do", href: "#what-i-do" },
-  { label: "YC Tracker", href: "#yc-tracker" },
-  { label: "Contacts", href: "#contacts" },
+  { label: "Contacts", href: "#connect" },
 ];
 
 export function NavMenu() {
