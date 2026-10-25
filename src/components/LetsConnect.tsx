@@ -9,8 +9,8 @@ export function LetsConnect() {
         </h2>
         
         <p className="text-base text-muted-foreground mb-8 max-w-lg">
-          Open to a technical co-founder and early collaborators.
-          If you build fast and care about distribution — let's talk.
+          Building Athana. Hiring a founding engineer and a head of growth
+          with the round.
         </p>
         
         <SocialLinks />
