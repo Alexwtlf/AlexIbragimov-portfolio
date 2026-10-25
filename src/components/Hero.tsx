@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { SocialLinks } from "./SocialLinks";
 
 const TYPING_TEXT = "NYC · Founder of Athana · Building the future of AI filmmaking";
 const STARTUPS_TEXT = "Startups";
@@ -79,10 +80,13 @@ export function Hero() {
         <p className="text-base text-muted-foreground max-w-lg mb-4">
           Fast iteration. Strong distribution.
         </p>
-        <p className="text-sm text-muted-foreground h-5">
+        <p className="text-sm text-muted-foreground h-10 sm:h-5">
           {displayText}
           <span className="animate-pulse">|</span>
         </p>
+        <div className="mt-6">
+          <SocialLinks size="sm" />
+        </div>
       </div>
     </section>
   );
