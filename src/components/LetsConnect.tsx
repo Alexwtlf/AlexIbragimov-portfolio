@@ -9,8 +9,8 @@ export function LetsConnect() {
         </h2>
         
         <p className="text-base text-muted-foreground mb-8 max-w-lg">
-          Building Athana. Hiring a founding engineer and a head of growth
-          with the round.
+          Building Athana in New York. If you invest, create or build,
+          let's talk.
         </p>
         
         <SocialLinks />
