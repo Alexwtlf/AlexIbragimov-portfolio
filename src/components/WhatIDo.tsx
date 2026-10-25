@@ -11,6 +11,7 @@ const SKILLS = [
   { before: "Frontend — ", accent: "React / Next.js", after: "" },
   { before: "Early-stage execution — ", accent: "weekly shipping", after: "" },
   { before: "Social distribution — ", accent: "30M+", after: " organic views" },
+  { before: "GTM / Growth: ", accent: "launches, lead gen, outreach, partnerships", after: "" },
 ];
 
 const HEADING_TEXT = "What I do";
